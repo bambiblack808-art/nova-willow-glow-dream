@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face {
+      font-family: Cinzel;
+      src: url("./fonts/Cinzel-wght.ttf") format("truetype");
+      font-weight: 400 900;
+      font-style: normal;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1200px;
+      height: 264px;
+      overflow: hidden;
+      background: #0c0d0f;
+    }
+    .stage {
+      width: 1200px;
+      height: 264px;
+      position: relative;
+      background:
+        radial-gradient(ellipse 34% 120% at 72% 58%, rgba(196, 92, 74, 0.58) 0%, rgba(196, 92, 74, 0.16) 36%, transparent 70%),
+        radial-gradient(ellipse 50% 90% at 100% 100%, rgba(61, 74, 63, 0.28) 0%, transparent 60%),
+        linear-gradient(90deg, #0c0d0f 0%, #101216 42%, #0c0d0f 100%);
+      overflow: hidden;
+    }
+    .arch {
+      position: absolute;
+      right: 40px;
+      top: -28px;
+      width: 340px;
+      height: 340px;
+      opacity: 0.95;
+    }
+    .lockup {
+      position: absolute;
+      left: 56px;
+      top: 28px;
+      z-index: 4;
+      width: 520px;
+    }
+    .lockup .hollow {
+      font-family: Cinzel, "Liberation Serif", serif;
+      font-weight: 700;
+      font-size: 34px;
+      letter-spacing: 0.38em;
+      color: #e8e6e1;
+      line-height: 1;
+      padding-left: 0.38em;
+      text-shadow: 0 0 16px rgba(196, 92, 74, 0.4), 0 2px 10px #0c0d0f;
+    }
+    .lockup .gate {
+      font-family: Cinzel, "Liberation Serif", serif;
+      font-weight: 800;
+      font-size: 52px;
+      letter-spacing: 0.4em;
+      color: #e8e6e1;
+      line-height: 0.95;
+      margin-top: 6px;
+      padding-left: 0.4em;
+      text-shadow: 0 0 18px rgba(196, 92, 74, 0.5), 0 2px 12px #0c0d0f;
+    }
+    .rule {
+      width: 150px;
+      height: 2px;
+      margin: 12px 0 0 8px;
+      background: linear-gradient(90deg, #9aa7b4, #e8e6e1 50%, transparent);
+      position: relative;
+    }
+    .rule::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      transform: translateY(-50%) rotate(45deg);
+      background: #c45c4a;
+      box-shadow: 0 0 8px #c45c4a;
+    }
+    .vignette {
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 90px 24px #0c0d0f;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .grain {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.14;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      z-index: 6;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <svg class="arch" viewBox="0 0 520 560" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="hollowGlow" cx="50%" cy="62%" r="48%">
+          <stop offset="0%" stop-color="#c45c4a" stop-opacity="0.95"/>
+          <stop offset="32%" stop-color="#c45c4a" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#0c0d0f" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="stone" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#c3ced6"/>
+          <stop offset="40%" stop-color="#9aa7b4"/>
+          <stop offset="100%" stop-color="#5e6a74"/>
+        </linearGradient>
+        <linearGradient id="stoneDark" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6f7b86"/>
+          <stop offset="100%" stop-color="#2a3036"/>
+        </linearGradient>
+      </defs>
+      <path d="M110 520 V210 C110 92 180 28 260 28 C340 28 410 92 410 210 V520 H368 V216 C368 122 322 72 260 72 C198 72 152 122 152 216 V520 Z" fill="url(#stone)"/>
+      <path d="M152 520 V216 C152 122 198 72 260 72 C322 72 368 122 368 216 V520 H330 V222 C330 148 300 108 260 108 C220 108 190 148 190 222 V520 Z" fill="url(#stoneDark)"/>
+      <path d="M190 520 V222 C190 148 220 108 260 108 C300 108 330 148 330 222 V520 H190 Z" fill="url(#hollowGlow)"/>
+      <path d="M248 28 h24 v48 h-24 z" fill="#b7c2cc"/>
+      <path d="M168 92 l36 10 6 16 -40 2 z" fill="#3d4a3f"/>
+      <path d="M300 70 l48 18 -8 16 -46 -8 z" fill="#324038"/>
+      <circle cx="214" cy="64" r="14" fill="#3d4a3f"/>
+    </svg>
+    <div class="lockup">
+      <div class="hollow">HOLLOW</div>
+      <div class="gate">GATE</div>
+      <div class="rule"></div>
+    </div>
+    <div class="vignette"></div>
+    <svg class="grain" xmlns="http://www.w3.org/2000/svg">
+      <filter id="n">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#n)"/>
+    </svg>
+  </div>
+</body>
+</html>
